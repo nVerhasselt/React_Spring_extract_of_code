@@ -1,0 +1,44 @@
+package com.itso.occupancy.occupancy.repository;
+
+import com.itso.occupancy.occupancy.model.*;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
+
+import java.util.Date;
+import java.util.List;
+import java.util.Optional;
+
+@Repository
+public interface WorkTaskRepository extends JpaRepository<WorkTask, Long> {
+    List<WorkTask> findAllByWorkTimeAndSupprimerIsFalseAndProjectSupprimerIsFalseAndFeatureSupprimerIsFalseAndTagSupprimerIsFalseAndUserIsDeletedIsFalseOrWorkTimeAndSupprimerIsFalseAndSupprimerIsFalseAndProjectSupprimerIsNullAndFeatureSupprimerIsNullAndTagSupprimerIsFalseAndUserIsDeletedIsFalseOrderById(double workTime,double workTime2);
+
+    List<WorkTask> findAllByUserIdAndSupprimerIsFalseAndProjectSupprimerIsFalseAndFeatureSupprimerIsFalseAndTagSupprimerIsFalseAndUserIsDeletedIsFalseOrUserIdAndSupprimerIsFalseAndSupprimerIsFalseAndProjectSupprimerIsNullAndFeatureSupprimerIsNullAndTagSupprimerIsFalseAndUserIsDeletedIsFalseOrderByWorkDay(Long id, Long id2);
+
+    List<WorkTask> findAllByProjectIdAndProjectSupprimerIsFalseAndFeatureSupprimerIsFalseAndTagSupprimerIsFalseAndUserIsDeletedIsFalseOrProjectIdAndSupprimerIsFalseAndProjectSupprimerIsNullAndFeatureSupprimerIsNullAndTagSupprimerIsFalseAndUserIsDeletedIsFalseOrderById(Long id, Long id2);
+
+    List<WorkTask> findAllByTagIdAndSupprimerIsFalseAndProjectSupprimerIsFalseAndFeatureSupprimerIsFalseAndTagSupprimerIsFalseAndUserIsDeletedIsFalseOrTagIdAndSupprimerIsFalseAndSupprimerIsFalseAndProjectSupprimerIsNullAndFeatureSupprimerIsNullAndTagSupprimerIsFalseAndUserIsDeletedIsFalseOrderById(Long id,Long id2);
+    
+    List<WorkTask> 
+    findAllByWorkDayAndUserIdIsAndSupprimerIsFalseAndProjectSupprimerIsFalseAndFeatureSupprimerIsFalseAndTagSupprimerIsFalseAndUserIsDeletedIsFalseOrWorkDayAndUserIdIsAndSupprimerIsFalseAndProjectSupprimerIsNullAndFeatureSupprimerIsNullAndTagSupprimerIsFalseAndUserIsDeletedIsFalse(Date workDay, Long id,Date workDay2, Long id2);
+    
+    List<WorkTask> SupprimerIsFalseAndProjectSupprimerIsFalseAndFeatureSupprimerIsFalseAndTagSupprimerIsFalseAndUserIsDeletedIsFalseOrSupprimerIsFalseAndProjectSupprimerIsNullAndFeatureSupprimerIsNullAndTagSupprimerIsFalseAndUserIsDeletedIsFalseOrderById();
+    
+    Optional<WorkTask> findByIdAndSupprimerIsFalseAndAndProjectSupprimerIsFalseAndFeatureSupprimerIsFalseAndTagSupprimerIsFalseAndUserIsDeletedIsFalseOrIdAndSupprimerIsFalseAndProjectSupprimerIsNullAndFeatureSupprimerIsNullAndTagSupprimerIsFalseAndUserIsDeletedIsFalseOrderById(Long id,Long id1);
+    
+    List<WorkTask> findByFeatureIdAndSupprimerIsFalseAndProjectSupprimerIsFalseAndFeatureSupprimerIsFalseAndTagSupprimerIsFalseAndUserIsDeletedIsFalseOrFeatureIdAndSupprimerIsFalseAndProjectSupprimerIsNullAndFeatureSupprimerIsNullAndTagSupprimerIsFalseAndUserIsDeletedIsFalseOrderById(Long id,Long id2);
+    
+    List<WorkTask> findByWorkDayBetweenAndUserIdIsAndSupprimerIsFalseAndProjectSupprimerIsFalseAndFeatureSupprimerIsFalseAndTagSupprimerIsFalseAndUserIsDeletedIsFalseOrWorkDayBetweenAndUserIdIsAndSupprimerIsFalseAndProjectSupprimerIsNullAndFeatureSupprimerIsNullAndTagSupprimerIsFalseAndUserIsDeletedIsFalseOrderByWorkDay(Date from,Date to,Long id,Date from2,Date to2,Long id2);
+    
+    List<WorkTask> VideIsFalseAndUserIdIsAndSupprimerIsFalseAndProjectSupprimerIsFalseAndFeatureSupprimerIsFalseAndTagSupprimerIsFalseAndUserIsDeletedIsFalse(Long id);
+    
+    List<WorkTask> findAllByProjectIdAndUserIdAndWorkDayAndProjectSupprimerIsFalseAndFeatureSupprimerIsFalseAndTagSupprimerIsFalseAndUserIsDeletedIsFalseOrProjectIdAndUserIdAndWorkDayAndSupprimerIsFalseAndProjectSupprimerIsNullAndFeatureSupprimerIsNullAndTagSupprimerIsFalseAndUserIsDeletedIsFalseOrderByWorkDay(Long idP, Long idU,Date from,Long idP2, Long idU2,Date from2);
+    
+    List<WorkTask> CommentaireIsNotNullAndSupprimerIsFalseAndProjectSupprimerIsFalseAndFeatureSupprimerIsFalseAndTagSupprimerIsFalseAndUserIsDeletedIsFalseOrCommentaireIsNotNullAndSupprimerIsFalseAndProjectSupprimerIsNullAndFeatureSupprimerIsNullAndTagSupprimerIsFalseAndUserIsDeletedIsFalseOrderByIdDesc();
+
+    @Query("FROM WorkTask w WHERE w.workDay BETWEEN ?1 AND ?2 AND w.supprimer IS FALSE")
+    List<WorkTask> findTasksByDateRange(Date begin, Date end);
+
+    @Query("FROM WorkTask w WHERE w.user.id = ?1 AND w.workDay BETWEEN ?2 AND ?3 AND w.supprimer IS FALSE")
+    List<WorkTask> findTasksByUserAndByDate(Long id_user, Date begin, Date end);   
+}
