@@ -8,7 +8,8 @@ I wrote an essay about it and what I have done. It's in the PDF file called Verh
 The front-end part is in React.js and styled components. 
 The back-end is in Spring Boot.
 
-I can't share the whole project, it belongs to the company but I shared few parts, as an example of the code I wrote.
+I can't share the whole project, it belongs to the company but I shared few parts, as an example of the code I wrote. 
+I would me pleased to show it during an interview.
 
 I didn't study these technologies during my training, I tried to get familiar with React before the beginning of my internship.
 It wasn't easy because we were studying PHP in the same time.  I hadn't any knowledge in Java before this. 
